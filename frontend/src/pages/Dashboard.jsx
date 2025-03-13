@@ -51,6 +51,10 @@ import FilterStudents from './FilterStudents';
 import SubjectManagement from './SubjectManagement';
 import TakeAttendance from './TakeAttendance';
 import DashboardSummary from '../components/DashboardSummary';
+import ResultsManagement from './ResultsManagement';
+import StudentResults from './StudentResults';
+import FeeManagement from './FeeManagement';
+
 
 const drawerWidth = 280;
 
@@ -75,12 +79,13 @@ function Dashboard() {
   // Base menu items for all roles
   const menuItems = [
     { text: 'Attendance', path: '/dashboard/attendance', icon: <DashboardIcon /> },
-    { text: 'Test Management', path: '/dashboard/test-management', icon: <AssessmentIcon /> },
-    { text: 'Results', path: '/dashboard/results', icon: <AssessmentIcon /> },
+   
+    
     { text: 'Photos', path: '/dashboard/photos', icon: <PhotoIcon /> },
     { text: 'Feedback', path: '/dashboard/feedback', icon: <FeedbackIcon /> },
     { text: 'Monthly Report', path: '/dashboard/monthly-report', icon: <ReportIcon /> },
     { text: 'Fee Status', path: '/dashboard/fee-status', icon: <MoneyIcon /> },
+    { text: 'Student Results', path: '/dashboard/student-results', icon: <AssessmentIcon /> },
   ];
 
   // Admin-specific menu items
@@ -88,10 +93,15 @@ function Dashboard() {
     menuItems.push(
       { text: 'Add Student', path: '/dashboard/add-student', icon: <PersonAddIcon /> },
       { text: 'Add Teacher', path: '/dashboard/add-teacher', icon: <PersonAddIcon /> },
+      { text: 'Fee Management', path: '/dashboard/fee-management', icon: <MoneyIcon /> },
+      { text: 'Test Management', path: '/dashboard/test-management', icon: <AssessmentIcon /> },
       { text: 'Manage Users', path: '/dashboard/manage-users', icon: <PeopleIcon /> },
       { text: 'Filter Students', path: '/dashboard/filter-students', icon: <FilterIcon /> },
       { text: 'Subject Management', path: '/dashboard/subject-management', icon: <BookIcon /> },
-      { text: 'Take Attendance', path: '/dashboard/take-attendance', icon: <EventIcon /> }
+      { text: 'Take Attendance', path: '/dashboard/take-attendance', icon: <EventIcon /> },
+      // { text: 'Results Management', path: '/dashboard/results/test', icon: <AssessmentIcon /> },
+      
+    
     );
   }
 
@@ -284,23 +294,27 @@ function Dashboard() {
           {/* Dashboard Summary Component */}
           <DashboardSummary />
           <Routes>
-            <Route path="attendance" element={<Attendance />} />
-            <Route path="test-management" element={<TestManagement />} />
-            <Route path="results" element={<Results />} />
-            <Route path="photos" element={<Photos />} />
-            <Route path="feedback" element={<Feedback />} />
-            <Route path="monthly-report" element={<MonthlyReport />} />
-            <Route path="fee-status" element={<FeeStatus />} />
-            {role === 'admin' && (
-              <>
-                <Route path="add-student" element={<AddStudent />} />
-                <Route path="add-teacher" element={<AddTeacher />} />
-                <Route path="manage-users" element={<ManageUsers />} />
-                <Route path="filter-students" element={<FilterStudents />} />
-                <Route path="subject-management" element={<SubjectManagement />} />
-                <Route path="take-attendance" element={<TakeAttendance />} />
-              </>
-            )}
+          <Route path="attendance" element={<Attendance />} />
+  <Route path="test-management" element={<TestManagement />} />
+  <Route path="results" element={<Results />} />
+  <Route path="results/test/:testId" element={<ResultsManagement />} />
+  <Route path="student-results" element={<StudentResults />} />
+  <Route path="photos" element={<Photos />} />
+  <Route path="feedback" element={<Feedback />} />
+  <Route path="monthly-report" element={<MonthlyReport />} />
+  <Route path="fee-status" element={<FeeStatus />} />
+  {role === 'admin' && (
+    <>
+      <Route path="add-student" element={<AddStudent />} />
+      <Route path="add-teacher" element={<AddTeacher />} />
+      <Route path="fee-management" element={<FeeManagement />} />
+
+      <Route path="manage-users" element={<ManageUsers />} />
+      <Route path="filter-students" element={<FilterStudents />} />
+      <Route path="subject-management" element={<SubjectManagement />} />
+      <Route path="take-attendance" element={<TakeAttendance />} />
+    </>
+  )}
             <Route 
               path="*" 
               element={

@@ -24,6 +24,24 @@ const reportsRoutes = require('./routes/reports');
 const usersRoutes = require('./routes/users');
 const subjectsRoutes = require('./routes/subjects');
 
+
+//new
+// Add these lines to your existing index.js file after the other route imports
+
+const feeStructuresRoutes = require('./routes/feeStructures');
+const studentFeesRoutes = require('./routes/studentFees');
+const paymentsRoutes = require('./routes/payments');
+const invoicesRoutes = require('./routes/invoices');
+const discountsRoutes = require('./routes/discounts');
+
+// Add these lines after your other app.use('/api/...') statements
+
+app.use('/api/fee-structures', feeStructuresRoutes);
+app.use('/api/student-fees', studentFeesRoutes);
+app.use('/api/payments', paymentsRoutes);
+app.use('/api/invoices', invoicesRoutes);
+app.use('/api/discounts', discountsRoutes);
+
 // Mount routes
 app.use('/api/auth', authRoutes);
 app.use('/api/attendance', attendanceRoutes);
